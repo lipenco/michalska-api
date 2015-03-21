@@ -21,5 +21,7 @@ RSpec.describe User, type: :model do
       it { should allow_value('example@domain.com').for(:email) }
     end
 
+    
+
 
 end
