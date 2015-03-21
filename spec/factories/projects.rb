@@ -6,6 +6,7 @@ FactoryGirl.define do
     description "MyText"
     published false
     thumbnail "MyString"
+    user_id 1
   end
 
 end
