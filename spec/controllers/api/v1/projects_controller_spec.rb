@@ -8,8 +8,9 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
       get :show, id: @project.id
     end
 
+
     it "returns the information about a reporter on a hash" do
-      project_response = json_response
+      project_response = json_response[:project]
       expect(project_response[:title]).to eql @project.title
     end
 
@@ -40,7 +41,7 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
       end
 
       it "renders the json representation for the project record just created" do
-        project_response = json_response
+        project_response = json_response[:project]
         expect(project_response[:title]).to eql @project_attributes[:title]
       end
 
@@ -83,7 +84,7 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
       end
 
       it "renders the json representation for the updated user" do
-        project_response = json_response
+        project_response = json_response[:project]
         expect(project_response[:title]).to eql "new project"
       end
 
