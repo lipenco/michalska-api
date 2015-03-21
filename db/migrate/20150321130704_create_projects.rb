@@ -6,6 +6,7 @@ class CreateProjects < ActiveRecord::Migration
       t.boolean :published, default: false
       t.string :thumbnail
       t.integer :user_id
+      t.date :project_date
 
       t.timestamps null: false
     end
