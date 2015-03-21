@@ -18,5 +18,9 @@ describe Authenticable, :type => :controller do
     end
   end
 
+  describe "#authenticate_with_token" do
+
+  end
+
 
 end
