@@ -62,4 +62,48 @@ RSpec.describe Api::V1::PhotosController, type: :controller do
    end
 
 
+   describe "PUT/PATCH #update" do
+     before(:each) do
+       @user = FactoryGirl.create :user
+       @project = FactoryGirl.create :project, user: @user
+       @photo = FactoryGirl.create :photo, project: @project
+       api_authorization_header @user.auth_token
+     end
+
+     context "when is successfully updated" do
+       before(:each) do
+         patch :update, { user_id: @user.id, project_id:@project.id, id: @photo.id,
+               photo: { url: "new project" } }
+       end
+
+       it "renders the json representation for the updated user" do
+         photo_response = json_response[:photo]
+         expect(photo_response[:url]).to eql "new project"
+       end
+
+       it { should respond_with 200 }
+     end
+
+
+     context "when is not updated" do
+       before(:each) do
+         patch :update, {  user_id: @user.id, project_id: @project.id, id: @photo.id,
+               photo: { url: "" } }
+       end
+
+       it "renders an errors json" do
+         photo_response = json_response
+         expect(photo_response).to have_key(:errors)
+       end
+
+       it "renders the json errors on whye the user could not be created" do
+         photo_response = json_response
+         expect(photo_response[:errors][:url]).to include "can't be blank"
+       end
+
+       it { should respond_with 422 }
+     end
+   end
+
+
 end

@@ -15,6 +15,16 @@ class Api::V1::PhotosController < ApplicationController
      end
    end
 
+   def update
+     project = current_user.projects.find(params[:project_id])
+     photo = project.photos.find(params[:id])
+     if photo.update(photo_params)
+       render json: photo, status: 200, location: [:api, project]
+     else
+       render json: { errors: photo.errors }, status: 422
+     end
+   end
+
 
    private
 
