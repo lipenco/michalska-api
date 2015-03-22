@@ -11,6 +11,9 @@ RSpec.describe Project do
   it { should respond_to(:published) }
   it { should respond_to(:user_id) }
 
+  it { should have_many(:photos) }
+
+
   it { should belong_to :user }
 
 end

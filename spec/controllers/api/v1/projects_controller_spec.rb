@@ -9,6 +9,7 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
     end
 
 
+
     it "returns the information about a reporter on a hash" do
       project_response = json_response[:project]
       expect(project_response[:title]).to eql @project.title
