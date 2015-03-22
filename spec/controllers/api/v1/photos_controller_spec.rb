@@ -35,6 +35,30 @@ RSpec.describe Api::V1::PhotosController, type: :controller do
 
        it { should respond_with 201 }
      end
+
+     context "when is not created" do
+       before(:each) do
+         @user = FactoryGirl.create :user
+         @project_attributes = FactoryGirl.attributes_for :project
+         @invalid_photo_attributes  = { url: "" }
+         api_authorization_header @user.auth_token
+         @project = FactoryGirl.create :project, user: @user
+         post :create, { user_id: @user.id, project_id: @project.id, photo: @invalid_photo_attributes }
+
+       end
+
+       it "renders an errors json" do
+         photo_response = json_response
+         expect(photo_response).to have_key(:errors)
+       end
+
+       it "renders the json errors" do
+         photo_response = json_response
+         expect(photo_response[:errors][:url]).to include "can't be blank"
+       end
+
+       it { should respond_with 422 }
+     end
    end
 
 
