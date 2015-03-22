@@ -12,7 +12,9 @@ Rails.application.routes.draw do
         end
 
         resources :sessions, :only => [:create, :destroy]
-        resources :projects, :only => [:show, :index, :create, :update, :destroy]
+        resources :projects, :only => [:show, :index, :create, :update, :destroy] do
+          resources :photos, :only => [:index]
+        end
 
     end
 
