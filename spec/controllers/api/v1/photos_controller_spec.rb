@@ -105,5 +105,22 @@ RSpec.describe Api::V1::PhotosController, type: :controller do
      end
    end
 
+   describe "DELETE #destroy" do
+     before(:each) do
+       @user = FactoryGirl.create :user
+       @project = FactoryGirl.create :project, user: @user
+       @photo = FactoryGirl.create :photo, project: @project
+       api_authorization_header @user.auth_token
+       delete :destroy, { user_id: @user.id, project_id: @project.id, id: @photo.id }
+
+      #  @user = FactoryGirl.create :user
+      #  @project = FactoryGirl.create :project, user: @user
+      #  api_authorization_header @user.auth_token
+      #  delete :destroy, { user_id: @user.id, id: @project.id }
+     end
+
+     it { should respond_with 204 }
+   end
+
 
 end

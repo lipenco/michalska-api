@@ -25,6 +25,13 @@ class Api::V1::PhotosController < ApplicationController
      end
    end
 
+   def destroy
+     project = current_user.projects.find(params[:project_id])
+     photo = project.photos.find(params[:id])
+     photo.destroy
+     head 204
+   end
+
 
    private
 
