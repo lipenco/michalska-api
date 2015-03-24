@@ -1,4 +1,4 @@
-class Api::V1::PhotosController < ApplicationController
+class PhotosController < ApplicationController
   respond_to :json
   before_action :setUpProject, only: [:create, :update, :destroy]
 

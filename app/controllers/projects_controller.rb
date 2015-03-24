@@ -1,6 +1,7 @@
-class Api::V1::ProjectsController < ApplicationController
+class ProjectsController < ApplicationController
   respond_to :json
   before_action :authenticate_with_token!, only: [:create]
+  skip_before_filter  :verify_authenticity_token
 
   def show
     respond_with Project.find(params[:id])
