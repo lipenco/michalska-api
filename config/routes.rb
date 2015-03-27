@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :projects, :only => [:show, :index, :create, :update, :destroy], defaults: { format: :json }, via: :options do
       resources :photos, :only => [:index, :create, :update, :destroy], defaults: { format: :json }
     end
-    resources :photos, :only => [:destroy], defaults: { format: :json }
-
+    # resources :photos, :only => [:featured], defaults: { format: :json }
+    
+    get 'featured', to: 'photos#featured'
 
 end

@@ -7,9 +7,9 @@ class PhotosController < ApplicationController
      respond_with Project.find(params[:project_id]).photos
    end
 
-  #  def featured
-  #    respond_with Photo.find('featured' : true)
-  #  end
+   def featured
+     respond_with Photo.find_by featured: true
+   end
 
    def create
      photo = @project.photos.build(photo_params)
@@ -39,7 +39,7 @@ class PhotosController < ApplicationController
    private
 
    def photo_params
-     params.require(:photo).permit(:url, :description, :horizontal, :project_id)
+     params.require(:photo).permit(:url, :description, :horizontal, :featured, :project_id)
    end
 
    def setUpProject

@@ -122,5 +122,22 @@ RSpec.describe PhotosController, type: :controller do
      it { should respond_with 204 }
    end
 
+   describe "GET #featured" do
+     context "gets photos featured:true" do
+       before(:each) do
+         @project = FactoryGirl.create :project
+         4.times { FactoryGirl.create :photo, project: @project }
+         get :featured, project_id: @project
+       end
+
+       it "returns 4 photos records from the project" do
+         photos_response = json_response[:photo]
+         expect(photos_response).to have(4).items
+       end
+
+       it { should respond_with 200 }
+     end
+   end
+
 
 end

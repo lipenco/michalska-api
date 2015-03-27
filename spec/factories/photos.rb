@@ -4,6 +4,7 @@ FactoryGirl.define do
     url "MyString"
     description "description"
     horizontal false
+    featured true
   end
 
 end
