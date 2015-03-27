@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :photos, :only => [:index, :create, :update, :destroy], defaults: { format: :json }
     end
     # resources :photos, :only => [:featured], defaults: { format: :json }
-    
-    get 'featured', to: 'photos#featured'
+
+    get 'featured', to: 'photos#featured', defaults: { format: :json }
 
 end
