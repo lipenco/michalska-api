@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
    end
 
    def featured
-     respond_with Photo.find_by featured: true
+     respond_with Photo.where featured: true
    end
 
    def create
