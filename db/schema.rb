@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322032731) do
+ActiveRecord::Schema.define(version: 20150327081746) do
 
   create_table "photos", force: :cascade do |t|
     t.integer  "project_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150322032731) do
     t.boolean  "horizontal",  default: true
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.boolean  "featured"
   end
 
   add_index "photos", ["project_id"], name: "index_photos_on_project_id"

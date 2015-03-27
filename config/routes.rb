@@ -10,8 +10,9 @@ Rails.application.routes.draw do
 
     resources :sessions, :only => [:create, :destroy], defaults: { format: :json }
     resources :projects, :only => [:show, :index, :create, :update, :destroy], defaults: { format: :json }, via: :options do
-      resources :photos, :only => [:index], defaults: { format: :json }
+      resources :photos, :only => [:index, :create, :update, :destroy], defaults: { format: :json }
     end
+    resources :photos, :only => [:destroy], defaults: { format: :json }
 
 
 end

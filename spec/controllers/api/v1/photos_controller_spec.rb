@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::PhotosController, type: :controller do
+RSpec.describe PhotosController, type: :controller do
 
   describe "GET #index" do
      before(:each) do

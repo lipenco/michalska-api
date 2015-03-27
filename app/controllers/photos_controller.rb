@@ -7,10 +7,14 @@ class PhotosController < ApplicationController
      respond_with Project.find(params[:project_id]).photos
    end
 
+  #  def featured
+  #    respond_with Photo.find('featured' : true)
+  #  end
+
    def create
      photo = @project.photos.build(photo_params)
      if photo.save
-      render json: photo , status: 201, location: [:api, @project ]
+      render json: photo , status: 201
      else
        render json: { errors: photo.errors }, status: 422
      end
@@ -19,7 +23,7 @@ class PhotosController < ApplicationController
    def update
      photo = @project.photos.find(params[:id])
      if photo.update(photo_params)
-       render json: photo, status: 200, location: [:api, @project]
+       render json: photo, status: 200
      else
        render json: { errors: photo.errors }, status: 422
      end
@@ -35,7 +39,7 @@ class PhotosController < ApplicationController
    private
 
    def photo_params
-     params.require(:photo).permit(:url, :description, :horizontal)
+     params.require(:photo).permit(:url, :description, :horizontal, :project_id)
    end
 
    def setUpProject

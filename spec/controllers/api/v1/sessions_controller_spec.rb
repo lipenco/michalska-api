@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::SessionsController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
 
     describe "POST #create" do
 
@@ -13,7 +13,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
 
         before(:each) do
           credentials = { email: @user.email, password: "12345678" }
-          post :create, { session: credentials }
+          post :create, { email: @user.email, password: "12345678"  }
         end
 
         it "returns the user record corresponding to the given credentials" do
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
 
         before(:each) do
           credentials = { email: @user.email, password: "invalidpassword" }
-          post :create, { session: credentials }
+          post :create, { email: @user.email, password: "invalidpassword" }
         end
 
         it "returns a json with an error" do
