@@ -58,4 +58,8 @@ end
 gem "devise"
 gem 'rack-cors', :require => 'rack/cors'
 
+group :production do
+  gem 'pg'
+end
+
 gem 'rails_12factor', group: :production
