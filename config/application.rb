@@ -29,7 +29,7 @@ module KingaApi
      end
     end
 
-    config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
 
 config.autoload_paths += %W(\#{config.root}/lib)
     # Settings in config/environments/* take precedence over those specified here.
