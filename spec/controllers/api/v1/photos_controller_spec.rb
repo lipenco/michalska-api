@@ -139,5 +139,11 @@ RSpec.describe PhotosController, type: :controller do
      end
    end
 
+   describe "GET #flicker" do
+     context "gets photos featured:true" do
+
+     end
+   end
+
 
 end
