@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
     response['photosets']["photoset"].each do |photoset|
       if photoset['title']['_content'] == params[:flickr_name]
         puts photoset['title']['_content']
-        project.thumbnail = "https://farm#{photoset['farm']}.staticflickr.com/#{photoset['server']}/#{photoset['primary']}_#{photoset['secret']}_m.jpg"
+        project.thumbnail = "https://farm#{photoset['farm']}.staticflickr.com/#{photoset['server']}/#{photoset['primary']}_#{photoset['secret']}.jpg"
         project.photoset_id = photoset['id']
       end
     end
