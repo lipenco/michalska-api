@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     # resources :photos, :only => [:featured], defaults: { format: :json }
 
     get 'featured', to: 'photos#featured', defaults: { format: :json }
-    get 'flickr/:project_id/:photoset_id', to: 'photos#flickr', defaults: { format: :json }
+    get 'flickr/:project_id', to: 'photos#flickr', defaults: { format: :json }
 
 end

@@ -14,10 +14,10 @@ class PhotosController < ApplicationController
    end
 
    def flickr
-     response = Net::HTTP.get(URI("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=f3b29e6157ba3c709b16e46755ab83ad&photoset_id=#{params[:photoset_id]}&user_id=130636143%40N05&format=json&nojsoncallback=1"))
+     response = Net::HTTP.get(URI("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=39468a9a4f9928a152830d3ad9720e8d&photoset_id=#{@project.photoset_id}&user_id=130636143%40N05&format=json&nojsoncallback=1"))
      response = JSON.parse(response)
      response['photoset']['photo'].each do |photo|
-       sizeResponse = Net::HTTP.get(URI("https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=f3b29e6157ba3c709b16e46755ab83ad&photo_id=#{photo['id']}&format=json&nojsoncallback=1"))
+       sizeResponse = Net::HTTP.get(URI("https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=39468a9a4f9928a152830d3ad9720e8d&photo_id=#{photo['id']}&format=json&nojsoncallback=1"))
        sizeResponse = JSON.parse(sizeResponse)
        url = sizeResponse['sizes']['size'].last['source']
        if sizeResponse['sizes']['size'].last["width"].to_f > sizeResponse['sizes']['size'].last["height"].to_f
@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
        photo = @project.photos.build({:url => url, :horizontal => horizontal})
        photo.save
      end
-     head 204
+     render json: @project , status: 201
    end
 
    def create
