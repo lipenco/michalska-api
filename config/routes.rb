@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     get 'featured', to: 'photos#featured', defaults: { format: :json }
     get 'flickr/:project_id', to: 'photos#flickr', defaults: { format: :json }
 
+    get 'published', to: 'projects#published',  defaults: { format: :json }
+
 end

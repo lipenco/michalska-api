@@ -8,6 +8,10 @@ class ProjectsController < ApplicationController
   end
 
   def index
+    respond_with Project.all
+  end
+
+  def published
     respond_with Project.where published: true
   end
 
