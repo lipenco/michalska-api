@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    respond_with Project.all
+    respond_with Project.where published: true
   end
 
   def create
