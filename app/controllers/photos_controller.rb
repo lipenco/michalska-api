@@ -2,6 +2,7 @@ require 'net/http'
 
 class PhotosController < ApplicationController
   respond_to :json
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy, :flickr]
   before_action :setUpProject, only: [:create, :update, :destroy, :flickr]
 
 
